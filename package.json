@@ -1,0 +1,12 @@
+{
+  "name": "xpn",
+  "version": "0.0.1",
+  "description": "",
+  "main": "truffle-config.js",
+  "scripts": {},
+  "author": "Jay <jay@pantheonx.foundation>",
+  "license": "GPLv3",
+  "dependencies": {
+    "zeppelin-solidity": "^1.12.0"
+  }
+}
