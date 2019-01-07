@@ -5,7 +5,7 @@
 ```bash
 $ nvm install 10.14.2
 $ nvm use 10.14.2
-$ npm install -g truffle@0.5.0
+$ npm install -g truffle@5.0.1
 $ npm install -g solhint@1.4.1
 ```
 

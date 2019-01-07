@@ -7,6 +7,6 @@
   "author": "Jay <jay@pantheonx.foundation>",
   "license": "GPLv3",
   "dependencies": {
-    "zeppelin-solidity": "^1.12.0"
+    "openzeppelin-solidity": "^2.1.1"
   }
 }
