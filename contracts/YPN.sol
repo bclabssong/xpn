@@ -100,7 +100,7 @@ contract YPN is ERC20 {
 
     uint public decimals = 18;
 
-    uint256 private _totalSupply = 800000000 * 10 ** decimals;
+    uint256 private _totalSupply = 770000000 * 10 ** decimals;
 
     constructor() public {
         _balances[msg.sender] = _totalSupply;

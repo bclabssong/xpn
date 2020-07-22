@@ -448,10 +448,6 @@ contract XPN is ERC20 {
         _burn(account, value);
         emit Approval(account, msg.sender, _allowed[account][msg.sender]);
     }
-    
-    function checkMsgSender() public view returns(address) {
-        return msg.sender;
-    }
 
 }
 
