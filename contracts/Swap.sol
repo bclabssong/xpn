@@ -1,6 +1,6 @@
 pragma solidity ^0.5.0;
 
-interface ISWAP {
+interface ISwap {
     function balanceOf(address who) external view returns (uint256);
     
     function burnFrom(address from, uint256 value) external;
@@ -8,17 +8,25 @@ interface ISWAP {
     function transfer(address to, uint256 value) external returns (bool);
 }
 
+interface IWhitelist {
+    function balanceOf(address owner) external view returns (uint256 balance);
+}
+
+
 contract Swap {
     address owner;
-    ISWAP _xpnTokenAddress;
-    ISWAP _ypnTokenAddress;
+    ISwap _xpnTokenAddress;
+    ISwap _ypnTokenAddress;
+    IWhitelist _vipWhitelist;
+    
     mapping (address => uint256) burnedToken;
     
     
-    constructor(ISWAP xpnAddress, ISWAP ypnAddress) public {
+    constructor(ISwap xpnAddress, ISwap ypnAddress, IWhitelist whitelistAddress) public {
         owner = msg.sender;
         _xpnTokenAddress = xpnAddress;
         _ypnTokenAddress = ypnAddress;
+        _vipWhitelist = whitelistAddress;
     }
     
     // function setNewToken(YPN ypnTokenAddress) external {
@@ -28,6 +36,10 @@ contract Swap {
     // function checkMsgSender() public view returns (address) {
     //     return _xpnTokenAddress.checkMsgSender();
     // }
+    
+    function checkWhitelist() public view returns (uint256) {
+        return _vipWhitelist.balanceOf(msg.sender);
+    }
     
     function newTokenContractBalance() public view returns (uint256) {
         return _ypnTokenAddress.balanceOf(address(this));
@@ -47,6 +59,7 @@ contract Swap {
     }
     
     function tokenSwap(uint256 value) public returns (bool) {
+        require(checkWhitelist() == 1);
         require(approvedTokenBurn(value));
         require(newTokenTransfer());
         return true;
