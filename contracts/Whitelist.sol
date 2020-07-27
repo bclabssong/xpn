@@ -956,7 +956,6 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata, IERC721Enumerable 
 
 
 contract Whitelist is ERC721, Ownable {
-    
     mapping(uint256 => string) public userData;
     
     constructor(string memory name, string memory symbol) public ERC721(name, symbol) {

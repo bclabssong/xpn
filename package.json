@@ -6,7 +6,5 @@
   "scripts": {},
   "author": "Jay <jay@pantheonx.foundation>",
   "license": "GPLv3",
-  "dependencies": {
-    "solc": "^0.5.0"
-  }
+  "dependencies": {}
 }
