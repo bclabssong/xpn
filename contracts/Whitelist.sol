@@ -28,6 +28,7 @@ library Strings {
     }
 }
 
+
 library Address {
     /**
      * @dev Returns true if `account` is a contract.
@@ -162,6 +163,7 @@ library Address {
         }
     }
 }
+
 
 library EnumerableMap {
     // To implement this library for multiple types with as little code
@@ -372,6 +374,7 @@ library EnumerableMap {
         return address(uint256(_get(map._inner, bytes32(key), errorMessage)));
     }
 }
+
 
 library EnumerableSet {
     // To implement this library for multiple types with as little code
@@ -589,6 +592,7 @@ library EnumerableSet {
     }
 }
 
+
 interface IERC165 {
     /**
      * @dev Returns true if this contract implements the interface defined by
@@ -600,6 +604,7 @@ interface IERC165 {
      */
     function supportsInterface(bytes4 interfaceId) external view returns (bool);
 }
+
 
 interface IERC721 is IERC165 {
     /**
@@ -633,6 +638,7 @@ interface IERC721 is IERC165 {
 
 }
 
+
 interface IERC721Enumerable is IERC721 {
 
     /**
@@ -640,6 +646,7 @@ interface IERC721Enumerable is IERC721 {
      */
     function totalSupply() external view returns (uint256);
 }
+
 
 interface IERC721Metadata is IERC721 {
 
@@ -659,6 +666,7 @@ interface IERC721Metadata is IERC721 {
     // function tokenURI(uint256 tokenId) external view returns (string memory);
 }
 
+
 interface IERC721Receiver {
     /**
      * @dev Whenever an {IERC721} `tokenId` token is transferred to this contract via {IERC721-safeTransferFrom}
@@ -673,6 +681,7 @@ interface IERC721Receiver {
     external returns (bytes4);
 }
 
+
 abstract contract Context {
     function _msgSender() internal view virtual returns (address payable) {
         return msg.sender;
@@ -683,6 +692,7 @@ abstract contract Context {
         return msg.data;
     }
 }
+
 
 contract Ownable is Context {
     address private _owner;
@@ -714,6 +724,7 @@ contract Ownable is Context {
     }
 
 }
+
 
 contract ERC165 is IERC165 {
     /*
@@ -757,6 +768,7 @@ contract ERC165 is IERC165 {
         _supportedInterfaces[interfaceId] = true;
     }
 }
+
 
 contract ERC721 is Context, ERC165, IERC721, IERC721Metadata, IERC721Enumerable {
     // using SafeMath for uint256;
@@ -942,18 +954,18 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata, IERC721Enumerable 
     function _beforeTokenTransfer(address from, address to, uint256 tokenId) internal virtual { }
 }
 
+
 contract Whitelist is ERC721, Ownable {
     
-    mapping (uint256 => string) public userName;
+    mapping(uint256 => string) public userData;
     
     constructor(string memory name, string memory symbol) public ERC721(name, symbol) {
         
     }
     
-    function enrollWhiteList(address to, string memory name) public onlyOwner returns (bool) {
-        userName[totalSupply()] = name;
+    function enrollWhiteList(address to, string memory data) public onlyOwner returns (bool) {
+        userName[totalSupply()] = data;
         _mint(to, totalSupply());
         return true;
     }
-    
 }
