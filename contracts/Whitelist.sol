@@ -956,14 +956,18 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata, IERC721Enumerable 
 
 
 contract Whitelist is ERC721, Ownable {
+    string private _name;
+    string private _symbol;
+
     mapping(uint256 => string) public userData;
     
-    constructor(string memory name, string memory symbol) public ERC721(name, symbol) {
-        
+    constructor() public ERC721(_name, _symbol) {
+        _name = "VIP List";
+        _symbol = "VIPL";
     }
     
     function enrollWhiteList(address to, string memory data) public onlyOwner returns (bool) {
-        userName[totalSupply()] = data;
+        userData[totalSupply()] = data;
         _mint(to, totalSupply());
         return true;
     }
