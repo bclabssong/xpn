@@ -1,4 +1,4 @@
-pragma solidity ^0.6.0;
+pragma solidity ^0.6.12;
 
 interface ISwap {
     function balanceOf(address who) external view returns (uint256);
