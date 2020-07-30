@@ -965,6 +965,10 @@ contract Whitelist is ERC721, Ownable {
         _name = "VIP List";
         _symbol = "VIPL";
     }
+
+    function kname() public returns(string memory) {
+        return _name;
+    }
     
     function enrollWhiteList(address to, string memory data) public onlyOwner returns (bool) {
         userData[totalSupply()] = data;
