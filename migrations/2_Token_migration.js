@@ -1,7 +1,9 @@
 const YPN = artifacts.require("YPN");
+const EXT = artifacts.require("ExToken");
 const fs = require("fs");
 
 module.exports = function(deployer) {
+  deployer.deploy(EXT);
   deployer.deploy(YPN).then(() => {
     if (YPN._json) {
       fs.writeFile('ypnABI', JSON.stringify(YPN._json.abi, 2), err => {
